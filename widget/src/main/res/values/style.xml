@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+
+    <style name="MenuButtomAnimationStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <!-- 是否有标题-->
+        <item name="android:windowNoTitle">true</item>
+        <!--背景颜色及透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowAnimationStyle">@style/MusicButtomAnimation</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+    <!--从下而上动画-->
+    <style name="MusicButtomAnimation">
+        <!-- 入场动画 -->
+        <item name="android:windowEnterAnimation">@anim/bottom_menu_enter</item>
+        <!-- 出厂动画 -->
+        <item name="android:windowExitAnimation">@anim/bottom_menu_exit</item>
+    </style>
+</resources>

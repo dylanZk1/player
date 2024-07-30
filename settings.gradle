@@ -1,0 +1,17 @@
+include ':app'
+include ':base'
+include ':cache'
+include ':DanmakuFlameMaster'
+include ':exo'
+include ':ijk'
+include ':iplayer'
+include ':player'
+include ':ndkbitmap-armv5'
+include ':ndkbitmap-armv7a'
+include ':ndkbitmap-x86'
+include ':subtitle'
+include ':widget'
+
+rootProject.name = "iPlayer"
+
+

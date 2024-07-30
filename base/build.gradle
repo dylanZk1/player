@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    //基础
+    api 'com.android.support:support-compat:+'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.5.1'//生命周期处理
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
+    api 'com.google.code.gson:gson:2.8.5'
+    api 'com.github.bumptech.glide:glide:4.9.0' //Glide4.x图片加载
+    //哔哩哔哩弹幕
+    api project(':DanmakuFlameMaster')
+    api project(':ndkbitmap-armv5')
+    api project(':ndkbitmap-armv7a')
+    api project(':ndkbitmap-x86')
+
+    api project(':subtitle')
+    //音视频缓存
+    api project(':cache')
+}

@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.android.videoplayer"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode rootProject.ext.sdk.versionCode
+        versionName rootProject.ext.sdk.versionName
+        multiDexEnabled true
+        ndk {
+            //ijk解码器，使用abiFilters筛选你需要的so
+            abiFilters 'arm64-v8a','armeabi-v7a'
+        }
+    }
+
+    signingConfigs {
+        app {
+            storeFile file('player.keystore')
+            storePassword "123456"
+            keyAlias "player"
+            keyPassword "123456"
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.app
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+        }
+        release {
+            debuggable false
+            zipAlignEnabled false
+            shrinkResources false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.app
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'androidx.core:core:1.7.0'//强制
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    //网络数据
+
+    implementation project(':iplayer')
+
+    implementation 'io.lindstrom:m3u8-parser:0.24'
+
+    implementation 'com.github.getActivity:XXPermissions:11.6'
+
+
+//    //播放器SDK
+//    implementation 'com.github.hty527.iPlayer:iplayer:2.1.1'
+//    //UI交互组件,可根据需要使用
+//    implementation 'com.github.hty527.iPlayer:widget:2.1.1'
+//    //音视频预缓存+边播边存,根据需要使用
+//    implementation 'com.github.hty527.iPlayer:cache:2.1.1'
+//    //ijk音视频解码器,根据自己需要实现
+//    implementation 'com.github.hty527.iPlayer:ijk:2.1.1'
+//    //exo音视频解码器,根据自己需要实现
+//    implementation 'com.github.hty527.iPlayer:exo:2.1.1'
+}
